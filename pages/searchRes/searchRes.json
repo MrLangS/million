@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "查询",
+  "usingComponents": {
+    "recordItem": "/components/recordItem/recordItem",
+    "ddlItem": "/components/ddlItem/ddlItem"
+  }
+}

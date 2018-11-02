@@ -1,0 +1,34 @@
+.box{
+  position: fixed;
+  /* padding: 20rpx 40rpx; */
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  width: 100%;
+  height: 90rpx;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.head{
+  display: flex;
+  margin-right: 40rpx;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1rpx solid #3281ff;
+}
+.modify-content{
+  /* width: 100%; */
+  font-size: 33rpx;
+  box-sizing: border-box;
+  height: 80rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  /* border-bottom: 1rpx solid #3281ff; */
+}
+.lists{
+  margin-top: 110rpx;
+}
+.pickGroup{
+  padding: 0 65rpx;
+}

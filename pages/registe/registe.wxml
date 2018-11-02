@@ -1,0 +1,29 @@
+<view class='wrapper'>
+  <image class='bcg' wx:if='{{bcgImg}}' src='{{bcgImg}}' mode='aspectFill'></image>
+  <view class='top'>
+    <view class='logo'>
+      <image src=''></image>
+    </view>
+    <form class='form' bindsubmit='commit'>
+      <view>
+        <input name='address' disabled='true' bindtap='getAreaList' value='{{address}}' placeholder='区域'></input>
+        <input name='name' bindinput='getName' placeholder='姓名'></input>
+        <input name='phoneNumber' bindinput='getPhoneValue' placeholder='手机号'></input>
+        <view class='code'>
+          <input name='code' bindinput='getCodeValue' placeholder='验证码' value='{{code}}'></input>
+          <button class='codeBtn' bindtap='getVerificationCode' disabled='{{disabled}}' >{{codename}}</button>
+        </view>
+      </view>
+      <button class='login' formType='submit'>确认</button>
+    </form>
+  </view>
+  <view class='footer'>装备存取管理</view>
+</view>
+<!-- 区域弹窗 -->
+<modal hidden="{{hiddenmodal}}" title="设备选择" confirm-text="确定" cancel-text="取消" catchcancel="cancel" catchconfirm="confirm">
+  <radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio" wx:key wx:for="{{addrList}}">
+      <radio value="{{item.id+','+index}}"  checked="{{item.checked}}"/>{{item.name}}
+    </label>
+  </radio-group>
+</modal>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "存取记录",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "recordItem": "/components/recordItem/recordItem"
+  }
+}

@@ -1,0 +1,9 @@
+<view hidden='{{hideSearch}}' class='search' catchtap='search' style='background:#3281ff'>
+  <view class='wrapper'>
+    <image src='/images/search.png'></image>
+    <view class='placeholderClass'>搜索存取记录</view>
+  </view>
+</view>
+<view class='lists'>
+  <recordItem list='{{recordList}}'></recordItem>
+</view>

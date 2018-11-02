@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/registe/registe",
+    "pages/record/record",
+    "pages/searchRes/searchRes",
+    "pages/result/result",
+    "pages/unreturn/unreturn",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#3281ff",
+    "navigationBarTitleText": "智能柜",
+    "navigationBarTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#abb4bf",
+    "selectedColor": "#3281ff",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/record/record",
+        "text": "记录",
+        "iconPath": "images/tab_record_normal.png",
+        "selectedIconPath": "images/tab_record.png"
+      },
+      {
+        "pagePath": "pages/unreturn/unreturn",
+        "text": "逾期",
+        "iconPath": "images/grayNotify.png",
+        "selectedIconPath": "images/notify.png"
+      }
+    ]
+  }
+}

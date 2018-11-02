@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "逾期记录",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "recordItem": "/components/ddlItem/ddlItem"
+  }
+}

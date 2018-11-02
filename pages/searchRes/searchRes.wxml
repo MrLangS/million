@@ -1,0 +1,26 @@
+<view class='box'>
+  <view class='head'><input class='modify-content' disabled='true' bindtap='chooseDay' placeholder='{{placeholder?placeholder:"查询"}}' focus='true' value='{{year}}年{{month}}月{{day}}日' ></input></view>
+</view>
+<!-- 记录部分查询列表 -->
+<view class='lists'>
+  <recordItem list='{{recordList}}'></recordItem>
+</view>
+<!-- 人员部分查询结果 -->
+<view class='lists'>
+  <ddlItem list='{{ddlList}}'></ddlItem>
+</view>
+
+<!-- 日期弹窗 -->
+<modal hidden="{{hiddenmodal}}" title="日期选择" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+  <picker-view class='pickGroup' indicator-style="height: 50px;" style="width: 100%; height: 300px;margin-right:50rpx;" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{years}}" wx:key style="line-height: 50px">{{item}}年</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" wx:key style="line-height: 50px">{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" wx:key style="line-height: 50px">{{item}}日</view>
+    </picker-view-column>
+  </picker-view>
+</modal>
