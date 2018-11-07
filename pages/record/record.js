@@ -1,21 +1,13 @@
 const utils = require('../../utils/util.js')
 var timeoutID
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    recordList: [
-      { img: '', username: '人员名称1',chest:'北京市公安局1号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 0 },
-      { img: '', username: '人员名称2',chest:'北京市公安局2号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 0 },
-      { img: '', username: '人员名称1',chest:'北京市公安局3号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 1 },
-      { img: '', username: '人员名称1',chest:'北京市公安局4号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 1 },
-      { img: '', username: '人员名称1',chest:'北京市公安局5号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 0 },
-      { img: '', username: '人员名称1',chest:'北京市公安局6号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 0 },
-      { img: '', username: '人员名称1',chest:'北京市公安局7号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 0 },
-      { img: '', username: '人员名称1',chest:'北京市公安局8号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 0 },
-      { img: '', username: '人员名称2',chest:'北京市公安局1号柜', phoneNumber: '18401610488', time: '2018-09-12 08:00', status: 1 }],
+    recordList: [],
     noResult: false,
     pageNum: 1,
     hideSearch: true,
@@ -50,7 +42,7 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    this.reload()
+    this.reload(true)
   },
   //下拉刷新触发
   reload(reload){
@@ -65,37 +57,44 @@ Page({
   },
   // 获取小册列表
   getList(reload) {
+    var that=this
     if (reload) {
       this.setData({
         pageNum: 1,
       })
     }
     wx.request({
-      url: '',
+      url: getApp().globalData.server +'/LockerAccessRecords/queryARFromWx.do',
       data: {
-        pageNum: this.data.pageNum,
+        pageIndex: that.data.pageNum-1,
+        // pageIndex: 0,
+        regionId: app.globalData.admin.regionId, 
+        clientId: app.globalData.admin.clientId
       },
+      method: 'post',
       success: (res) => {
+        console.log("当前页码:"+that.data.pageNum)
         let data = res.data
-        if (data.s === 1) {
-          let list = data.d
-          if (!utils.isEmptyObject(list)) {
-            let pageNum = this.data.pageNum + 1
-            this.setData({
-              pageNum,
-              recordList: reload ? list : this.data.recordList.concat(list),
-            })
-          }
-        } else {
-          if (data.s === 2) {
-            // no result
-            this.setData({
-              noResult: true,
-            })
-          } else {
+        console.log(data)
+        let list = data.recordList
+        if (!utils.isEmptyObject(list)) {
+          let pageNum = this.data.pageNum + 1
+          this.setData({
+            pageNum,
+            recordList: reload ? list : this.data.recordList.concat(list),
+          })
+        }else{
+          this.setData({
+            noResult: true,
+          })
+          if(that.data.pageNum!=1){
             wx.showToast({
-              title: data.m.toString(),
+              title: '已加载至最底!',
               icon: 'none',
+            })
+          }else{
+            this.setData({
+              recordList: [],
             })
           }
         }

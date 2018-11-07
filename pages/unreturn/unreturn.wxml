@@ -7,3 +7,8 @@
 <view class='lists'>
   <recordItem list='{{ddlList}}'></recordItem>
 </view>
+<view class='wrap' wx:if="{{!ddlList.length}}">
+  <view class='info'>
+    当前无逾期记录！
+  </view> 
+</view>

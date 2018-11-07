@@ -6,7 +6,7 @@
     </view>
     <form class='form' bindsubmit='commit'>
       <view>
-        <input name='address' disabled='true' bindtap='getAreaList' value='{{address}}' placeholder='区域'></input>
+        <!-- <input name='address' disabled='true' bindtap='getAreaList' value='{{address}}' placeholder='区域'></input> -->
         <input name='name' bindinput='getName' placeholder='姓名'></input>
         <input name='phoneNumber' bindinput='getPhoneValue' placeholder='手机号'></input>
         <view class='code'>

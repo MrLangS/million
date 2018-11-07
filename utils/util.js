@@ -13,6 +13,10 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+function formatDay(that) {
+  var date = that.data
+  return [date.year, date.month, date.day].map(formatNumber).join('-')
+}
 const JsonToArray = json => {
   var arr = []
   for (var j in json) {
@@ -140,8 +144,8 @@ function checkName(that) {
 //表单验证
 function checkForm(that, tag) {
   if (tag == 0) {
-    // if (checkAddress(that) && checkName(that) &&checkPhone(that) && checkCode(that)) {
-    if (checkAddress(that) && checkName(that) && checkPhone(that)) {
+    if (checkName(that) &&checkPhone(that) && checkCode(that)) {
+    // if (checkName(that) && checkPhone(that)) {
       return true
     } else {
       return false
@@ -257,10 +261,12 @@ function login() {
                 method: 'post',
                 success: function (res) {
                   console.log(res)
+                  app.globalData.sysWXUser = res.data.sysWXUser
+                  app.globalData.admin = res.data.admin
                 }
               })
               wx.switchTab({
-                url: '../../record/record',
+                url: '../record/record',
               })
             }
           },
@@ -280,10 +286,7 @@ let isEmptyObject = (obj) => {
   }
   return true
 }
-function formatDay(that) {
-  var date = that.data
-  return [date.year, date.month, date.day].join('-')
-}
+
 module.exports = {
   formatTime: formatTime,
   getCode: getCode,

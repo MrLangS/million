@@ -12,11 +12,11 @@ Component({
       var i = e.currentTarget.dataset.index
       wx.showModal({
         title: '提示',
-        content: '您确定给' + that.data.list[i].username +'拨打电话吗？',
+        content: '您确定给' + that.data.list[i].personName +'拨打电话吗？',
         success: function(res){
           if(res.confirm){
             wx.makePhoneCall({
-              phoneNumber: that.data.list[i].phoneNumber
+              phoneNumber: that.data.list[i].phoneNum
             })
           }
         }

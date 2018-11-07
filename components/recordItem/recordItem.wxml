@@ -1,14 +1,14 @@
 <view class='list' wx:for='{{list}}' wx:key='{{index}}' data-id='{{item._id}}'>
-  <image class='poster' src='{{item.img? item.img:"/images/empty_avatar_user.png"}}'></image>
+  <image class='poster' src='{{item.capturePhotoURL? item.capturePhotoURL:"/images/empty_avatar_user.png"}}'></image>
   <view class='info'>
-    <view class='title'>{{item.username}} | {{item.chest}}</view>
-    <view class='author'>手机号 · {{item.phoneNumber}}</view>
+    <view class='title'>{{item.personName}} | {{item.devName}}</view>
+    <view class='author'>手机号 · {{item.phoneNum}}</view>
     <view class='others'>
       <view>
         <text class='isFinished'>时间 · </text>
-        <text>{{item.time}}</text>
+        <text>{{item.accessTime}}</text>
       </view>
     </view>
   </view>
-  <view class='price' >{{item.status?'归还':'取出'}}</view>
+  <view class='price' >{{item.option?'归还':'取出'}}</view>
 </view>

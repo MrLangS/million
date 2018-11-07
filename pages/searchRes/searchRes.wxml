@@ -9,6 +9,11 @@
 <view class='lists'>
   <ddlItem list='{{ddlList}}'></ddlItem>
 </view>
+<view class='wrapper' wx:if="{{!recordList.length}}">
+  <view class='info'>
+    该日无记录，可更换一天查看记录！
+  </view> 
+</view>
 
 <!-- 日期弹窗 -->
 <modal hidden="{{hiddenmodal}}" title="日期选择" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">

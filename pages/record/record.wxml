@@ -7,3 +7,9 @@
 <view class='lists'>
   <recordItem list='{{recordList}}'></recordItem>
 </view>
+<view class='wrap' wx:if="{{!recordList.length}}">
+  <view class='info'>
+    当前无存取记录！
+  </view> 
+</view>
+

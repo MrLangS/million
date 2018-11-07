@@ -1,5 +1,6 @@
 // pages/register/phone/phone.js
 var util = require("../../utils/util.js")
+var app=getApp()
 var preVal=''
 var val=''
 var id=0
@@ -72,30 +73,41 @@ Page({
     let code = values.code || ''
     if (util.checkForm(this, 0)) {
       console.log(values)
-      // wx.request({
-      //   url: getApp().globalData.server + '/ClientInfoAction!registerClient.do',
-      //   data: {
-      //     address: values.address,
-      //     name: values.name,
-      //     phoneNumber: values.phoneNumber,
-      //   },
-      //   header: {},
-      //   method: 'post',
-      //   dataType: 'json',
-      //   success: function (res) {
-      //     console.log(res)
-      //     wx.redirectTo({
-      //       url: '../result/result',
-      //     })
-      //   },
-      //   fail: function (res) { },
-      // })
+      wx.request({
+        url: app.globalData.server + '/SysWXUserAction/bindingSysAdmin.do',
+        data: {
+          wxOpenId: app.globalData.openid,
+          username: values.name,
+          phonenum: values.phoneNumber,
+        },
+        method: 'post',
+        dataType: 'json',
+        success: function (res) {
+          console.log(res)
+          if(res.data.msg=="ok"){
+            app.globalData.sysWXUser = res.data.sysWXUser
+            app.globalData.admin = res.data.admin
+            wx.redirectTo({
+              url: '../result/result',
+            })
+          }else{
+            wx.showToast({
+              title: '绑定失败！请输入相关联的手机号',
+              icon: 'none',
+              duration: 2000,
+            })
+          }
+          
+        },
+        fail: function (res) { },
+      })
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    util.login()
     //设置导航栏背景色
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
@@ -105,7 +117,6 @@ Page({
         timingFunc: 'easeIn'
       }
     })
-    // util.login()
   },
 
   /**

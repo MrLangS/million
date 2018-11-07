@@ -1,1 +1,11 @@
-/* pages/record/record.wxss */
+.wrap{
+  position: relative;
+  /* top: 20rpx; */
+  padding-top: 0rpx;
+  background: white;
+}
+.info{
+  height: 182rpx;
+  line-height: 182rpx;
+  text-align: center;
+}

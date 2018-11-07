@@ -2,7 +2,7 @@
   <view class="result">
     <icon type="success" size="100"/>
     <view class="text">注册成功</view>
-    <label class='lab'>欢迎使用门禁管理</label> 
+    <label class='lab'>欢迎使用智能柜</label> 
   </view>
   <button type='primary' bindtap='intoIndex' class='btn' size='default'>查看记录</button>
 </view>
