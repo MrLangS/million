@@ -230,6 +230,8 @@ function getPickerList(tag) {
   }
 }
 function login() {
+  var encryptedData = null
+  var iv = null
   // 登录
   wx.login({
     success: res => {
@@ -237,43 +239,57 @@ function login() {
       var code = res.code
       if (code) {
         console.log('获取用户登录凭证：' + code);
-        var loginUrl = getApp().globalData.server + '/SysWXUserAction/onLogin.do?code=' + code +'&WxUserType=4';
-        // --------- 发送凭证 ------------------
-        wx.request({
-          url: loginUrl,
-          data: { code: code },
+        wx.getUserInfo({
           success: function (res) {
-            var openid = res.data.openid //返回openid
-            console.log("openid is: " + openid);
-            getApp().globalData.openid = openid
-            wx.setStorageSync('openid', openid);
-            var registed = res.data.registed
-            wx.setStorageSync('registed', registed)
-            console.log("registed:" + registed)
+            encryptedData = res.encryptedData
+            iv = res.iv
+            //用户已经授权过
+            var loginUrl = getApp().globalData.server + '/SysWXUserAction/onLogin.do';
+            // --------- 发送凭证 ------------------
+            wx.request({
+              url: loginUrl,
+              data: { 
+                code: code,
+                encryptedData: encryptedData,
+                iv: iv,
+                userType: '4'
+              },
+              method: 'post',
+              success: function (res) {
+                var openid = res.data.openid //返回openid
+                console.log("openid is: " + openid);
+                getApp().globalData.openid = openid
+                wx.setStorageSync('openid', openid);
+                var registed = res.data.registed
+                wx.setStorageSync('registed', registed)
+                console.log("registed:" + registed)
 
-            //已注册用户的处理
-            if (registed == 1) {
-              wx.request({
-                url: getApp().globalData.server + '/SysWXUserAction/getAdminMsgByOpenId.do?openId=' + openid,
-                data: {
-                  openId: openid
-                },
-                method: 'post',
-                success: function (res) {
-                  console.log(res)
-                  app.globalData.sysWXUser = res.data.sysWXUser
-                  app.globalData.admin = res.data.admin
+                //已注册用户的处理
+                if (registed == 1) {
+                  wx.request({
+                    url: getApp().globalData.server + '/SysWXUserAction/getAdminMsgByOpenId.do?openId=' + openid,
+                    data: {
+                      openId: openid
+                    },
+                    method: 'post',
+                    success: function (res) {
+                      console.log(res)
+                      app.globalData.sysWXUser = res.data.sysWXUser
+                      app.globalData.admin = res.data.admin
+                    }
+                  })
+                  wx.switchTab({
+                    url: '../record/record',
+                  })
                 }
-              })
-              wx.switchTab({
-                url: '../record/record',
-              })
-            }
-          },
-          fail: function () {
-            console.log("fail")
+              },
+              fail: function () {
+                console.log("fail")
+              }
+            })
           }
         })
+        
       } else {
         console.log('获取用户登录态失败：' + res.errMsg);
       }

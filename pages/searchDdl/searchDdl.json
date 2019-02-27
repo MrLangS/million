@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "逾期记录查询",
+  "usingComponents": {
+    "ddlItem": "/components/ddlItem/ddlItem"
+  }
+}

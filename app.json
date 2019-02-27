@@ -1,9 +1,12 @@
 {
   "pages":[
     "pages/registe/registe",
-    "pages/record/record",
+    "pages/statistics/statistics",
+    "pages/authorize/authorize",
+    "pages/searchDdl/searchDdl",
     "pages/searchRes/searchRes",
     "pages/result/result",
+    "pages/record/record",
     "pages/unreturn/unreturn",
     "pages/index/index",
     "pages/logs/logs"
@@ -31,6 +34,12 @@
         "text": "逾期",
         "iconPath": "images/grayNotify.png",
         "selectedIconPath": "images/notify.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "images/ans.png",
+        "selectedIconPath": "images/ansBlue.png"
       }
     ]
   }

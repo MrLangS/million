@@ -1,0 +1,27 @@
+<view class='box'>
+  <view class='head'>
+    <view class='headitem'>姓名·</view>
+    <view class='oneitem'>
+      <input class='inp' name='username' bindinput='inputname' placeholder='在此输入' value='{{searchVal}}'></input>
+    </view>
+    <view class='headitem'>逾期·</view>
+    <view class='twoitem'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class='below'>
+    <!-- <view><button class='btn' style='margin-right:30rpx;' catchtap='clearContent'>清空</button></view> -->
+    <view>
+      <button class='btn' catchtap='search'>查询</button>
+    </view>
+  </view>
+</view>
+<!-- 逾期部分查询结果 -->
+<view class='lists'>
+  <ddlItem list='{{ddlList}}'></ddlItem>
+</view>
+

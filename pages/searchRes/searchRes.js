@@ -29,9 +29,23 @@ Page({
     noResult: false,
     pageNum: 1,
     tag: 0,
+    dateTag: 0,
     searchTime: '',
+    searchVal: '',
+    codeval: true,
   },
 
+  inputname(e) {
+    this.setData({
+      searchVal: e.detail.value
+    })
+  },
+  clearContent: function () {
+    this.setData({
+      dateTag: 0,
+      searchVal: '',
+    })
+  },
   //弹出框
   chooseDay: function () {
     buff(this)
@@ -53,10 +67,11 @@ Page({
     console.log(date)
     this.setData({
       hiddenmodal: true,
-      searchTime: date,
-      recordList: [],
+      dateTag:1,
     })
-    this.getList(true, date)
+  },
+  switchCondition: function () {
+    this.getList(true)
   },
   //日期选择器事件
   bindChange: function (e) {
@@ -68,27 +83,9 @@ Page({
       day: this.data.days[val[2]]
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad: function (options) {
-    this.getList(true, util.formatDay(this))
-    // this.setData({
-    //   tag: options.tag
-    // })
-    // //tag=1代表查询存取记录；tag=0代表查询逾期记录
-    // if (options.tag == 1) {
-    //   this.setData({
-    //     placeholder: '查询存取记录',
-    //     recordList: [],
-    //   })
-    // }
-    // if (options.tag == 0) {
-    //   this.setData({
-    //     placeholder: '查询逾期记录',
-    //     ddlList: []
-    //   })
-    // }
+    // this.getList(true, util.formatDay(this))
   },
 
   onPullDownRefresh: function () {
@@ -100,13 +97,13 @@ Page({
       noResult: false,
       pageNum: 1,
     })
-    this.init(reload,this.data.searchTime)
+    this.init(reload)
   },
-  init(reload,date) {
-    this.getList(reload,date)
+  init(reload) {
+    this.getList(reload)
   },
   // 获取列表
-  getList(reload,date) {
+  getList(reload) {
     var that=this
     if (reload) {
       this.setData({
@@ -115,10 +112,17 @@ Page({
     }
     var requestUrl=''
     requestUrl = getApp().globalData.server + '/LockerAccessRecords/queryARFromWx.do'
+    var searchDay = ''
+    if (this.data.dateTag != 0) {
+      searchDay = util.formatDay(this)
+    }
+    var personName = this.data.searchVal
+
     wx.request({
       url: requestUrl,
       data: {
-        searchTime : date,
+        searchTime: searchDay||'',
+        personName: personName||'',
         pageIndex : this.data.pageNum-1,
         regionId: app.globalData.admin.regionId,
         clientId: app.globalData.admin.clientId
@@ -148,6 +152,11 @@ Page({
             this.setData({
               recordList: []
             })
+            wx.showToast({
+              title: '无匹配结果!',
+              icon: 'none',
+              duration: 1500,
+            })
           }
         }
       },
@@ -165,7 +174,11 @@ Page({
 
   onReachBottom: function () {
     if (!this.data.recordList.length || !this.data.noResult) {
-      this.getList(false,this.data.searchTime)
+      if(this.data.valtag){
+        this.getList(false, this.data.searchTime)
+      } else {
+        this.getList(false, this.data.searchVal)
+      }
     }
   },
 

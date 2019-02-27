@@ -1,19 +1,34 @@
 <view class='box'>
-  <view class='head'><input class='modify-content' disabled='true' bindtap='chooseDay' placeholder='{{placeholder?placeholder:"查询"}}' focus='true' value='{{year}}年{{month}}月{{day}}日' ></input></view>
+  <view class='head'>
+    <view class='headitem' style='margin-left:150rpx;'>姓名·</view>
+    <view class='oneitem'>
+      <input class='inp' name='username' bindinput='inputname' placeholder='在此输入' value='{{searchVal}}'></input>
+    </view>
+    <view class='headitem'>日期·</view>
+    <view class='twoitem'>
+      <input class='inp' name='username' placeholder='点击选择' disabled='true' bindtap='chooseDay' value='{{dateTag==1?year+"-"+month+"-"+day:""}}'></input>
+    </view>
+  </view>
+  <view class='below'>
+    <view><button class='btn' style='margin-right:30rpx;' catchtap='clearContent'>清空</button></view>
+    <view>
+      <button class='btn' style='margin-left:30rpx;' catchtap='switchCondition'>查询</button>
+    </view>
+  </view>
 </view>
 <!-- 记录部分查询列表 -->
 <view class='lists'>
   <recordItem list='{{recordList}}'></recordItem>
 </view>
-<!-- 人员部分查询结果 -->
+<!-- 逾期部分查询结果 -->
 <view class='lists'>
   <ddlItem list='{{ddlList}}'></ddlItem>
 </view>
-<view class='wrapper' wx:if="{{!recordList.length}}">
+<!-- <view class='wrapper' wx:if="{{!recordList.length}}">
   <view class='info'>
-    该日无记录，可更换一天查看记录！
+    暂无记录，可更改查询条件！
   </view> 
-</view>
+</view> -->
 
 <!-- 日期弹窗 -->
 <modal hidden="{{hiddenmodal}}" title="日期选择" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">

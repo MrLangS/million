@@ -11,7 +11,7 @@
         <input name='phoneNumber' bindinput='getPhoneValue' placeholder='手机号'></input>
         <view class='code'>
           <input name='code' bindinput='getCodeValue' placeholder='验证码' value='{{code}}'></input>
-          <button class='codeBtn' bindtap='getVerificationCode' disabled='{{disabled}}' >{{codename}}</button>
+          <button class='codeBtn' hover-class='hover-class' bindtap='getVerificationCode' disabled='{{disabled}}' >{{codename}}</button>
         </view>
       </view>
       <button class='login' formType='submit'>确认</button>

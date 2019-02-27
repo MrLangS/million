@@ -11,7 +11,8 @@ App({
     sysWXUser: null,
     admin: null,
     openid: null,
-    // server: 'http://192.168.0.253:8080/FaceMonitorWeb',
-    server: 'https://doorcontrol.faceos.com/FaceMonitorWeb',
+    // server: 'http://192.168.0.251:8080/ebank',
+    server: 'https://doortest.faceos.com',
+    // server: 'https://doorcontrol.faceos.com/FaceMonitorWeb',
   }
 })

@@ -1,0 +1,71 @@
+<view class='wrapper card'>
+  <!-- 存取记录统计 -->
+  <view class='t'>
+    <view class='title'>
+      <view>存取记录统计(最近)</view>
+    </view>
+    <view class='content sub'>
+      <view class='subtitle'>周统计</view>
+      <view class='items'>
+        <view class='item'>
+          <!-- <view class='cont-title'> -->
+          <view>
+            <view>取出次数</view>
+          </view>
+          <view class='count'>{{fetchCountForWeek || '0'}}次</view>
+        </view>
+        <view class='item'>
+          <!-- <view class='cont-title'> -->
+          <view>
+            <view>归还次数</view>
+          </view>
+          <view class='count'>{{saveCountForWeek || '0'}}次</view>
+        </view>
+      </view>
+      <view class='subtitle'>月统计</view>
+      <view class='items'>
+        <view class='item'>
+          <!-- <view class='cont-title'> -->
+          <view>
+            <view>取出次数</view>
+          </view>
+          <view class='count'>{{fetchCountForMonth || '0'}}次</view>
+        </view>
+        <view class='item'>
+          <!-- <view class='cont-title'> -->
+          <view>
+            <view>归还次数</view>
+          </view>
+          <view class='count'>{{saveCountForMonth || '0'}}次</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='wrapper card'>
+  <!-- 存取记录统计 -->
+  <view class='t'>
+    <view class='title'>
+      <view>逾期记录统计</view>
+    </view>
+    <view class='content sub'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          <view class='subtitle' hover-class='hover-class'>
+            逾期标准·{{array[index]}}<view class='tip'>可选</view>
+          </view>
+        </view>
+      </picker>
+      <view class='items'>
+        <view class='item'>
+          <!-- <view class='cont-title'> -->
+          <view>
+            <view>当前逾期数</view>
+          </view>
+          <view class='count'>{{overNum || '0'}}个</view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+</view>

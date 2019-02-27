@@ -106,7 +106,7 @@ Page({
         })
       },
       complete: () => {
-        wx.stopPullDownRefresh()
+        
       },
     })
   },

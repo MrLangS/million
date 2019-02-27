@@ -92,9 +92,9 @@ Page({
             })
           }else{
             wx.showToast({
-              title: '绑定失败！请输入相关联的手机号',
+              title: '需管理员添加对应手机号方能注册',
               icon: 'none',
-              duration: 2000,
+              duration: 2500,
             })
           }
           
@@ -107,7 +107,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.login()
+    //util.login()
     //设置导航栏背景色
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
@@ -115,6 +115,19 @@ Page({
       animation: {
         duration: 200,
         timingFunc: 'easeIn'
+      }
+    })
+    // 查看是否授权
+    wx.getSetting({
+      success: function (res) {
+        console.log(res)
+        if (res.authSetting['scope.userInfo']) {
+          util.login()
+        } else {
+          wx.redirectTo({
+            url: '/pages/authorize/authorize',
+          })
+        }
       }
     })
   },

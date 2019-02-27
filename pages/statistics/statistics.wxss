@@ -1,0 +1,50 @@
+.setting {
+  font-size: 28rpx;
+  color: #666;
+}
+.t {
+  overflow: hidden;
+  padding: 0 40rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.toast .t {
+  font-size: 28rpx;
+  color: #40a7e7;
+  margin: 20rpx 0;
+  padding: 0;
+}
+.item {
+  /* background: red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+}
+.title {
+  font-size: 32rpx;
+  color: #40a7e7;
+  margin: 26rpx 0;
+}
+.subtitle {
+  font-size: 28rpx;
+  color: #40a7e7;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sub.content .item {
+  padding-left: 20rpx;
+}
+.tip {
+  font-size: 22rpx;
+  color: #999;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 40rpx;
+}
+.wifi{
+  width: 40rpx;
+  height: 40rpx;
+}

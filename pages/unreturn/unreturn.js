@@ -15,7 +15,7 @@ Page({
 
   search: function () {
     wx.navigateTo({
-      url: '/pages/searchRes/searchRes?tag=' + 0,
+      url: '/pages/searchDdl/searchDdl',
     })
   },
   //页面滚动监听
