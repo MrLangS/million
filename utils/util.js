@@ -259,6 +259,7 @@ function login() {
                 var openid = res.data.openid //返回openid
                 console.log("openid is: " + openid);
                 getApp().globalData.openid = openid
+                getApp().globalData.realOpenid = res.data.miniproId
                 wx.setStorageSync('openid', openid);
                 var registed = res.data.registed
                 wx.setStorageSync('registed', registed)
